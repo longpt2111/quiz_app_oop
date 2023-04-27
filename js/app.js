@@ -1,8 +1,9 @@
 class App {
   constructor(questions) {
-    this.questions = questions.map(
-      (q, index) => new SingleChoiceQuestion(q, index)
-    );
+    this.questions = questions.map((q, index) => {
+      if (q.multi) return new MultiChoiceQuestion(q, index);
+      return new SingleChoiceQuestion(q, index);
+    });
 
     this.quizContainer = document.getElementById("quiz");
     this.resultsContainer = document.getElementById("results");
