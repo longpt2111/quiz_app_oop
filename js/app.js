@@ -37,13 +37,21 @@ class App {
     this.questions.forEach((currentQuestion, questionNumber) => {
       const answerContainer = answerContainers[questionNumber];
       const selector = `input[name=question-${questionNumber}]:checked`;
-      const userAnswer = answerContainer.querySelector(selector) || {};
+      const userAnswers = answerContainer.querySelectorAll(selector) || [];
 
-      if (userAnswer.value === currentQuestion.correctAnswer) {
+      const correctAnswersArr = currentQuestion.correctAnswer.split("").sort();
+      const userAnswersArr = Array.prototype.map
+        .call(userAnswers, (userAnswer) => {
+          return userAnswer.value;
+        })
+        .sort();
+      if (
+        JSON.stringify(correctAnswersArr) === JSON.stringify(userAnswersArr)
+      ) {
         numCorrect++;
-        answerContainers[questionNumber].style.color = "lightgreen";
+        answerContainer.style.color = "lightgreen";
       } else {
-        answerContainers[questionNumber].style.color = "red";
+        answerContainer.style.color = "red";
       }
     });
 
