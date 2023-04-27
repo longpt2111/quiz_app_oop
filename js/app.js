@@ -10,9 +10,11 @@ class App {
     this.previousButton = document.getElementById("previous");
     this.nextButton = document.getElementById("next");
 
-    this.submitButton.addEventListener("click", this.showResults);
-    this.previousButton.addEventListener("click", this.showPreviousSlide);
-    this.nextButton.addEventListener("click", this.showNextSlide);
+    this.submitButton.addEventListener("click", () => this.showResults());
+    this.previousButton.addEventListener("click", () =>
+      this.showPreviousSlide()
+    );
+    this.nextButton.addEventListener("click", () => this.showNextSlide());
 
     this.currentSlide = 0;
   }
