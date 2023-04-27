@@ -11,11 +11,12 @@ class App {
     this.previousButton = document.getElementById("previous");
     this.nextButton = document.getElementById("next");
 
-    this.submitButton.addEventListener("click", () => this.showResults());
-    this.previousButton.addEventListener("click", () =>
-      this.showPreviousSlide()
+    this.submitButton.addEventListener("click", this.showResults.bind(this));
+    this.previousButton.addEventListener(
+      "click",
+      this.showPreviousSlide.bind(this)
     );
-    this.nextButton.addEventListener("click", () => this.showNextSlide());
+    this.nextButton.addEventListener("click", this.showNextSlide.bind(this));
 
     this.currentSlide = 0;
   }
